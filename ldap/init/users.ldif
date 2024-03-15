@@ -1,0 +1,64 @@
+
+dn: ou=people,dc=dummy-host,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: uid=hrahman,ou=people,dc=dummy-host,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+uid: hrahman
+cn: Hamidur Rahman
+sn: Rahman
+givenName: Hamidur
+displayName: Rahman, Hamidur
+uidNumber: 1110001
+gidNumber: 14564101
+loginShell: /bin/bash
+homeDirectory: /home/hrahman
+userPassword: hrahman1
+mail: hrahman@dummy-host.com
+
+
+dn: uid=jdoe,ou=people,dc=dummy-host,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+uid: jdoe
+cn: John Doe
+sn: Doe
+givenName: John
+displayName: Doe, John
+uidNumber: 1110002
+gidNumber: 14564102
+loginShell: /bin/bash
+homeDirectory: /home/jdoe
+userPassword: jdoe1
+mail: jdoe@dummy-host.com
+
+
+dn: cn=admin,ou=people,dc=dummy-host,dc=com
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: admin
+description: Group for admins
+uniqueMember: uid=hrahman,ou=people,dc=dummy-host,dc=com
+
+dn: cn=devs,ou=people,dc=dummy-host,dc=com
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: devs
+description: Groups for developers
+uniqueMember: uid=hrahman,ou=people,dc=dummy-host,dc=com
+
+dn: cn=users,ou=people,dc=dummy-host,dc=com
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: users
+description: Groups for users(viewers)
+uniqueMember: uid=jdoe,ou=people,dc=dummy-host,dc=com

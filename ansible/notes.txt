@@ -1,0 +1,44 @@
+
+* an ec2 must be given an iam role to make any aws service calls, even if it is an ec2 call to get metadata info
+using curl. example: curl http://169.254.169.254/latest/meta-data/. Security group must allow access to port 80
+
+
+## install ansible using pip
+#yum -y update
+#yum install python3 -y
+#ln -sf /usr/bin/python3 /usr/bin/python
+#yum -y install python3-pip
+#pip3 install ansible
+
+
+* add fedora extra packages by
+    * yum update -y
+      yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+      yum install git-all -y
+      yum install ansible -y
+
+
+#ssh -i /Users/hamidurrahman/Downloads/Developer/aws/hrahman-admin.pem ec2-user@ec2-18-234-154-27.compute-1.amazonaws.com
+
+#!/bin/bash -ex
+yum -y update
+yum -y install httpd
+systemctl start httpd
+systemctl enable httpd
+export PUB=`curl http://checkip.amazonaws.com`
+echo "<h1>Test webserver</h1><h2>Hostname: $(hostname -f)</h2><h2>Public IP: $PUB</h2>" > /var/www/html/index.html
+
+
+* add outbound rules to security groups. specially if the instances need to go internet to download something.
+* curl http://169.254.169.254/latest/meta-data/ returns 401 - unauthorized could mean token is expired and need to regenerate again.
+    * https://repost.aws/questions/QUnvPR1W46TS6wQWdf1sK82w/i-am-getting-401-unauthorized-when-i-hit-meta-data-api
+
+* cut -d: -f1 /etc/passwd
+    * lists all users(usernames) in a server
+
+
+
+* jenkins:
+    * https://dev.to/aws-builders/installing-jenkins-on-amazon-ec2-491e
+    * https://dev.to/aws-builders/jenkins-installation-configuration-on-aws-ec2-linux-instance-3npl
+    * https://dev.to/aws-builders/how-to-set-up-jenkins-and-a-pipeline-on-aws-2pak

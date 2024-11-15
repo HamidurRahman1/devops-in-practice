@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-ui-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask-ui
+      tier: ui
+  template:
+    metadata:
+      name: flask-ui-pod
+      labels:
+        app: flask-ui
+        tier: ui
+    spec:
+      containers:
+        - name: flask-ui
+          image: flask-ui-docker:v1
+          ports:
+            - containerPort: 8080

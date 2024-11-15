@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-ui-service
+spec:
+  selector:
+    app: flask-ui
+    tier: ui
+  type: NodePort
+  ports:
+    - targetPort: 8080
+      port: 80
+      nodePort: 32000
